@@ -18,15 +18,11 @@ RUN apt install -y \
         libtool \
         libtool-bin \
         libkrb5-dev \
-        libkrb5-3 \
-        krb5-config \
-        krb5-user \
         libgss-dev \
         libpam-krb5 \
         libsasl2-dev \
         libsasl2-modules \
         libsasl2-modules-gssapi-mit \
-        libsasl2-modules-ldap \
         libldap-dev
 
 RUN mkdir /squid && \
