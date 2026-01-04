@@ -1,4 +1,4 @@
-FROM docker.io/library/debian:13.2-slim
+FROM docker.io/library/debian:13.2-slim AS build
 
 ENV DEBIAN_FRONTEND=noninteractive
 
@@ -30,6 +30,7 @@ RUN mkdir /squid && \
 
 COPY squid-7.3 /squid/source
 
+# Building
 WORKDIR /squid/source
 RUN ./configure --prefix=/usr \
                 --localstatedir=/var \
@@ -48,5 +49,6 @@ RUN ./configure --prefix=/usr \
                 --disable-auth-basic \
                 --disable-auth-digest \
                 --enable-external-acl-helpers="kerberos_ldap_group"
+RUN make -j 12
 
 CMD ["bash"]
